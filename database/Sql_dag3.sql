@@ -561,6 +561,20 @@ BEGIN
     WHERE Id = pBehandelingId;
 END $$
 
+DROP PROCEDURE IF EXISTS sp_update_product_verkoopprijs $$
+CREATE PROCEDURE sp_update_product_verkoopprijs(
+    IN pProductId BIGINT UNSIGNED,
+    IN pNieuweVerkoopPrijs DECIMAL(8,2)
+)
+BEGIN
+    UPDATE Product
+    SET
+        VerkoopPrijs = pNieuweVerkoopPrijs,
+        DatumGewijzigd = CURRENT_TIMESTAMP(6)
+    WHERE Id = pProductId
+      AND IsActief = b'1';
+END $$
+
 DROP PROCEDURE IF EXISTS sp_get_bestellingen_overzicht $$
 CREATE PROCEDURE sp_get_bestellingen_overzicht()
 BEGIN

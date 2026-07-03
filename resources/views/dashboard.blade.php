@@ -1,16 +1,16 @@
 <x-app-layout>
-    <div class="min-h-[calc(100vh-56px)] bg-[#e6e8ee] pt-10 flex flex-col">
-        <div class="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 flex-1">
-            <div class="rounded-2xl border border-gray-300 bg-gradient-to-r from-[#f5f7fa] to-[#f7f2e7] px-10 py-11 shadow-sm">
-                <span title="Dit is de Kapsalon applicatie" class="inline-block rounded-md bg-yellow-400 px-3 py-1 text-xs font-bold text-gray-800">Kapsalon applicatie</span>
+    <div class="dashboard-page">
+        <div class="dashboard-container">
+            <div class="dashboard-hero">
+                <span title="Dit is de Kapsalon applicatie" class="dashboard-badge">Kapsalon applicatie</span>
 
-                <h1 class="mt-6 text-[32px] font-extrabold tracking-tight text-slate-600">Eigenaar</h1>
-                <p class="mt-2 text-[18px] font-semibold text-slate-500">Home</p>
-                <p class="mt-5 max-w-[980px] text-[23px] leading-[1.35] text-gray-500">
+                <h1 class="dashboard-title">Eigenaar</h1>
+                <p class="dashboard-subtitle">Home</p>
+                <p class="dashboard-intro">
                     Welkom bij Kniploket Tiko - hier regel je eenvoudig klanten, afspraken en planning voor de salon.
                 </p>
 
-                <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+                <div class="dashboard-grid">
                     @php
                         $cards = [
                             ['title' => 'Accounts', 'text' => 'Beheer gebruikersaccounts en roltoewijzingen.', 'href' => route('dashboard')],
@@ -25,10 +25,10 @@
                     @endphp
 
                     @foreach ($cards as $card)
-                        <article title="{{ $card['title'] }}" class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-100">
-                            <h3 class="text-[18px] font-bold leading-tight text-gray-800">{{ $card['title'] }}</h3>
-                            <p class="mt-2 min-h-[98px] text-[13px] leading-[1.4] text-gray-500">{{ $card['text'] }}</p>
-                            <a href="{{ $card['href'] }}" title="Open {{ $card['title'] }}" class="inline-block rounded-xl border border-blue-400 px-3 py-1 text-[14px] font-semibold text-blue-600 hover:bg-blue-50">
+                        <article title="{{ $card['title'] }}" class="dashboard-card">
+                            <h3 class="dashboard-card-title">{{ $card['title'] }}</h3>
+                            <p class="dashboard-card-text">{{ $card['text'] }}</p>
+                            <a href="{{ $card['href'] }}" title="Open {{ $card['title'] }}" class="dashboard-card-link">
                                 Openen
                             </a>
                         </article>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <footer class="mt-6 pb-6 text-center text-sm text-gray-500">
+        <footer class="dashboard-footer">
             © 2026 Kniploket Tiko - Alle rechten voorbehouden
         </footer>
     </div>

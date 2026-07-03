@@ -1,21 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="behandeling-edit-header">
             {{ __('Behandeling bijwerken') }}
         </h2>
     </x-slot>
 
-    <div class="py-8">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+    <div class="behandeling-edit-page">
+        <div class="behandeling-edit-container">
             @if (session('error'))
-                <div class="mb-4 rounded border border-red-200 bg-red-50 px-4 py-3 text-red-800">
+                <div class="behandeling-edit-alert">
                     {{ session('error') }}
                 </div>
             @endif
 
             @if ($errors->any())
-                <div class="mb-4 rounded border border-red-200 bg-red-50 px-4 py-3 text-red-800">
-                    <ul class="list-disc pl-5">
+                <div class="behandeling-edit-alert">
+                    <ul class="behandeling-edit-errors">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -23,13 +23,13 @@
                 </div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <form method="POST" action="{{ route('behandelingen.update', $behandeling) }}" class="p-6 space-y-4">
+            <div class="behandeling-edit-card">
+                <form method="POST" action="{{ route('behandelingen.update', $behandeling) }}" class="behandeling-edit-form">
                     @csrf
                     @method('PUT')
 
                     <div>
-                        <label for="naam" class="block text-sm font-medium text-gray-700">Naam behandeling</label>
+                        <label for="naam" class="behandeling-edit-label">Naam behandeling</label>
                         <input
                             id="naam"
                             name="naam"
@@ -37,25 +37,25 @@
                             required
                             maxlength="100"
                             value="{{ old('naam', $behandeling->Naam) }}"
-                            class="mt-1 block w-full rounded border-gray-300"
+                            class="behandeling-edit-input"
                         >
                     </div>
 
                     <div>
-                        <label for="omschrijving" class="block text-sm font-medium text-gray-700">Omschrijving</label>
+                        <label for="omschrijving" class="behandeling-edit-label">Omschrijving</label>
                         <textarea
                             id="omschrijving"
                             name="omschrijving"
                             required
                             maxlength="255"
                             rows="3"
-                            class="mt-1 block w-full rounded border-gray-300"
+                            class="behandeling-edit-textarea"
                         >{{ old('omschrijving', $behandeling->Omschrijving) }}</textarea>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div class="behandeling-edit-grid">
                         <div>
-                            <label for="duurminuten" class="block text-sm font-medium text-gray-700">Duur (minuten)</label>
+                            <label for="duurminuten" class="behandeling-edit-label">Duur (minuten)</label>
                             <input
                                 id="duurminuten"
                                 name="duurminuten"
@@ -64,12 +64,12 @@
                                 min="10"
                                 max="480"
                                 value="{{ old('duurminuten', $behandeling->Duurminuten) }}"
-                                class="mt-1 block w-full rounded border-gray-300"
+                                class="behandeling-edit-input"
                             >
                         </div>
 
                         <div>
-                            <label for="prijs" class="block text-sm font-medium text-gray-700">Prijs</label>
+                            <label for="prijs" class="behandeling-edit-label">Prijs</label>
                             <input
                                 id="prijs"
                                 name="prijs"
@@ -79,35 +79,35 @@
                                 max="999999.99"
                                 step="0.01"
                                 value="{{ old('prijs', $behandeling->Prijs) }}"
-                                class="mt-1 block w-full rounded border-gray-300"
+                                class="behandeling-edit-input"
                             >
                         </div>
                     </div>
 
                     <div>
-                        <label for="is_actief" class="block text-sm font-medium text-gray-700">Status</label>
-                        <select id="is_actief" name="is_actief" required class="mt-1 block w-full rounded border-gray-300">
+                        <label for="is_actief" class="behandeling-edit-label">Status</label>
+                        <select id="is_actief" name="is_actief" required class="behandeling-edit-select">
                             <option value="1" @selected((string) old('is_actief', (int) $behandeling->IsActief) === '1')>Actief</option>
                             <option value="0" @selected((string) old('is_actief', (int) $behandeling->IsActief) === '0')>Inactief</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="opmerking" class="block text-sm font-medium text-gray-700">Opmerking</label>
+                        <label for="opmerking" class="behandeling-edit-label">Opmerking</label>
                         <textarea
                             id="opmerking"
                             name="opmerking"
                             maxlength="255"
                             rows="3"
-                            class="mt-1 block w-full rounded border-gray-300"
+                            class="behandeling-edit-textarea"
                         >{{ old('opmerking', $behandeling->Opmerking) }}</textarea>
                     </div>
 
-                    <div class="flex justify-end gap-2">
-                        <a href="{{ route('behandelingen.index') }}" class="rounded border border-gray-300 px-4 py-2 text-gray-700">
+                    <div class="behandeling-edit-actions">
+                        <a href="{{ route('behandelingen.index') }}" class="behandeling-edit-cancel">
                             Annuleren
                         </a>
-                        <button type="submit" class="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+                        <button type="submit" class="behandeling-edit-save">
                             Opslaan
                         </button>
                     </div>

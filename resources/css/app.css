@@ -1,3 +1,834 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Behandelingen page: aparte stijllaag zodat Blade overzichtelijk blijft. */
+.behandeling-page {
+	min-height: calc(100vh - 56px);
+	background: #dfe2e8;
+	padding-top: 2rem;
+	padding-bottom: 1.5rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.behandeling-container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
+	flex: 1;
+}
+
+.behandeling-breadcrumb {
+	margin-bottom: 1rem;
+	font-size: 0.875rem;
+}
+
+.behandeling-breadcrumb-home {
+	color: #d11433;
+	font-weight: 600;
+}
+
+.behandeling-breadcrumb-sep {
+	margin: 0 0.25rem;
+	color: #9ca3af;
+}
+
+.behandeling-breadcrumb-current {
+	color: #6b7280;
+	font-weight: 600;
+}
+
+.behandeling-title {
+	font-size: 2.25rem;
+	font-weight: 800;
+	line-height: 1.15;
+	color: #d11433;
+}
+
+.behandeling-alert-warning {
+	margin-top: 1rem;
+	border-radius: 0.5rem;
+	border: 1px solid #fcd34d;
+	background: #fef3c7;
+	padding: 0.75rem 1rem;
+	color: #92400e;
+}
+
+.behandeling-panel {
+	margin-top: 1rem;
+	border-radius: 1rem;
+	background: #f4f4f4;
+	padding: 1rem;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.behandeling-filter-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 0.75rem;
+}
+
+.behandeling-filter-field {
+	width: 100%;
+}
+
+.behandeling-filter-label {
+	margin-bottom: 0.25rem;
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: #374151;
+}
+
+.behandeling-filter-select {
+	width: 100%;
+	border-radius: 0.5rem;
+	border: 1px solid #d1d5db;
+	background: #fff;
+	padding: 0.5rem 0.75rem;
+	font-size: 15px;
+	color: #374151;
+}
+
+.behandeling-btn-primary {
+	border-radius: 0.5rem;
+	background: #d11433;
+	padding: 0.5rem 1.5rem;
+	font-size: 0.875rem;
+	font-weight: 700;
+	color: #fff;
+}
+
+.behandeling-btn-reset {
+	border-radius: 0.5rem;
+	background: #64748b;
+	padding: 0.5rem 1.25rem;
+	text-align: center;
+	font-size: 0.875rem;
+	font-weight: 700;
+	color: #fff;
+}
+
+.behandeling-counter {
+	margin-bottom: 0.75rem;
+	font-size: 17px;
+	color: #64748b;
+}
+
+.behandeling-pagination {
+	margin-bottom: 0.75rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.behandeling-pagination-item {
+	display: inline-flex;
+	height: 2rem;
+	min-width: 2rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.5rem;
+	border: 1px solid #d1d5db;
+	padding: 0 0.5rem;
+	color: #d11433;
+}
+
+.behandeling-pagination-item.is-active {
+	border-color: #d11433;
+	background: #d11433;
+	color: #fff;
+}
+
+.behandeling-pagination-item.is-disabled {
+	color: #d1d5db;
+}
+
+.behandeling-table-wrap {
+	overflow-x: hidden;
+}
+
+.behandeling-table {
+	width: 100%;
+	color: #374151;
+	font-size: 15px;
+}
+
+.behandeling-table thead tr {
+	background: #d11433;
+	color: #fff;
+	text-align: left;
+}
+
+.behandeling-table th,
+.behandeling-table td {
+	padding: 0.5rem 0.75rem;
+}
+
+.behandeling-table tbody tr {
+	border-bottom: 1px solid #d1d5db;
+	background: rgba(255, 255, 255, 0.6);
+}
+
+.behandeling-type {
+	white-space: nowrap;
+}
+
+.behandeling-action-link {
+	display: inline-flex;
+	border-radius: 0.375rem;
+	border: 1px solid #2f6fed;
+	padding: 0.25rem 0.75rem;
+	color: #2f6fed;
+}
+
+.behandeling-empty {
+	padding: 1rem 0.75rem;
+	text-align: center;
+	color: #4b5563;
+}
+
+.behandeling-footer {
+	margin-top: 1.5rem;
+	text-align: center;
+	font-size: 0.875rem;
+	color: #6b7280;
+}
+
+.kt-nav {
+	border-bottom: 1px solid #b90f2d;
+	background: #cc0f2f;
+	color: #fff;
+}
+
+.kt-nav-container {
+	margin: 0 auto;
+	max-width: 1180px;
+	padding: 0 0.5rem;
+}
+
+.kt-nav-row {
+	display: flex;
+	height: 3.5rem;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.kt-nav-logo {
+	margin-left: -1.75rem;
+	flex-shrink: 0;
+	font-size: 1.875rem;
+	font-weight: 900;
+	line-height: 1;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.kt-nav-links {
+	display: none;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.kt-nav-link {
+	border-radius: 0.375rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.kt-nav-link.is-active {
+	background: #6e4ea1;
+	color: #fff;
+}
+
+.kt-nav-account {
+	display: none;
+}
+
+.kt-nav-role {
+	white-space: nowrap;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.kt-nav-logout {
+	border-radius: 0.375rem;
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	padding: 0.25rem 0.75rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.kt-nav-menu-btn {
+	border-radius: 0.375rem;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	padding: 0.25rem 0.5rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.kt-nav-mobile {
+	border-top: 1px solid rgba(255, 255, 255, 0.25);
+	background: #b90f2d;
+}
+
+.kt-nav-mobile-inner {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.75rem 1rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.kt-nav-mobile-link {
+	display: block;
+	border-radius: 0.375rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.kt-nav-mobile-link.is-active {
+	background: #6e4ea1;
+	color: #fff;
+}
+
+.kt-nav-mobile-role {
+	padding-top: 0.5rem;
+	font-size: 0.75rem;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.kt-nav-mobile-logout {
+	margin-top: 0.5rem;
+	border-radius: 0.375rem;
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	padding: 0.25rem 0.75rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.dashboard-page {
+	min-height: calc(100vh - 56px);
+	background: #e6e8ee;
+	padding-top: 2.5rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboard-container {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1400px;
+	padding: 0 1rem;
+	flex: 1;
+}
+
+.dashboard-hero {
+	border-radius: 1rem;
+	border: 1px solid #d1d5db;
+	background: linear-gradient(90deg, #f5f7fa 0%, #f7f2e7 100%);
+	padding: 2.75rem 2.5rem;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-badge {
+	display: inline-block;
+	border-radius: 0.375rem;
+	background: #facc15;
+	padding: 0.25rem 0.75rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: #1f2937;
+}
+
+.dashboard-title {
+	margin-top: 1.5rem;
+	font-size: 32px;
+	font-weight: 800;
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	color: #475569;
+}
+
+.dashboard-subtitle {
+	margin-top: 0.5rem;
+	font-size: 18px;
+	font-weight: 600;
+	color: #64748b;
+}
+
+.dashboard-intro {
+	margin-top: 1.25rem;
+	max-width: 980px;
+	font-size: 23px;
+	line-height: 1.35;
+	color: #6b7280;
+}
+
+.dashboard-grid {
+	margin-top: 2rem;
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr;
+}
+
+.dashboard-card {
+	border-radius: 1rem;
+	background: #fff;
+	padding: 1.25rem;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+	border: 1px solid #f3f4f6;
+}
+
+.dashboard-card-title {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.2;
+	color: #1f2937;
+}
+
+.dashboard-card-text {
+	margin-top: 0.5rem;
+	min-height: 98px;
+	font-size: 13px;
+	line-height: 1.4;
+	color: #6b7280;
+}
+
+.dashboard-card-link {
+	display: inline-block;
+	border-radius: 0.75rem;
+	border: 1px solid #60a5fa;
+	padding: 0.25rem 0.75rem;
+	font-size: 14px;
+	font-weight: 600;
+	color: #2563eb;
+}
+
+.dashboard-footer {
+	margin-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	text-align: center;
+	font-size: 0.875rem;
+	color: #6b7280;
+}
+
+.behandeling-edit-page {
+	padding: 2rem 0;
+}
+
+.behandeling-edit-header {
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.75rem;
+	color: #1f2937;
+}
+
+.behandeling-edit-container {
+	margin: 0 auto;
+	max-width: 768px;
+	padding: 0 1rem;
+}
+
+.behandeling-edit-alert {
+	margin-bottom: 1rem;
+	border-radius: 0.375rem;
+	border: 1px solid #fecaca;
+	background: #fef2f2;
+	padding: 0.75rem 1rem;
+	color: #991b1b;
+}
+
+.behandeling-edit-errors {
+	padding-left: 1.25rem;
+	list-style: disc;
+}
+
+.behandeling-edit-card {
+	overflow: hidden;
+	border-radius: 0.5rem;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.behandeling-edit-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1.5rem;
+}
+
+.behandeling-edit-label {
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: #374151;
+}
+
+.behandeling-edit-input,
+.behandeling-edit-select,
+.behandeling-edit-textarea {
+	margin-top: 0.25rem;
+	display: block;
+	width: 100%;
+	border-radius: 0.375rem;
+	border: 1px solid #d1d5db;
+	padding: 0.5rem 0.75rem;
+	background: #fff;
+}
+
+.behandeling-edit-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+}
+
+.behandeling-edit-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+.behandeling-edit-cancel {
+	border-radius: 0.375rem;
+	border: 1px solid #d1d5db;
+	padding: 0.5rem 1rem;
+	color: #374151;
+}
+
+.behandeling-edit-save {
+	border-radius: 0.375rem;
+	background: #4f46e5;
+	padding: 0.5rem 1rem;
+	color: #fff;
+}
+
+.product-page {
+	min-height: calc(100vh - 56px);
+	background: #dfe2e8;
+	padding-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.product-container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
+	flex: 1;
+}
+
+.product-container-narrow {
+	max-width: 980px;
+}
+
+.product-breadcrumb {
+	margin-bottom: 0.75rem;
+	font-size: 0.875rem;
+}
+
+.product-breadcrumb-home,
+.product-breadcrumb-link {
+	color: #d11433;
+	font-weight: 600;
+}
+
+.product-breadcrumb-sep {
+	margin: 0 0.25rem;
+	color: #9ca3af;
+}
+
+.product-breadcrumb-current {
+	color: #6b7280;
+}
+
+.product-title {
+	font-size: 2.25rem;
+	font-weight: 800;
+	line-height: 1.15;
+	color: #d11433;
+}
+
+.product-title-secondary {
+	font-size: inherit;
+	font-weight: 700;
+	color: #64748b;
+}
+
+.product-panel {
+	margin-top: 0.75rem;
+	border-radius: 0.875rem;
+	background: #f4f4f4;
+	padding: 0.75rem;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.product-table-wrap {
+	overflow-x: hidden;
+}
+
+.product-table {
+	width: 100%;
+	font-size: 15px;
+	color: #374151;
+}
+
+.product-table thead tr {
+	text-align: left;
+	color: #111827;
+	font-weight: 700;
+}
+
+.product-table th,
+.product-table td {
+	padding: 0.5rem 0.5rem;
+	border-bottom: 1px solid #d1d5db;
+}
+
+.product-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.product-btn-detail,
+.product-btn-primary,
+.product-btn-back {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.5rem;
+	padding: 0.25rem 0.9rem;
+	font-size: 0.875rem;
+	font-weight: 700;
+}
+
+.product-btn-detail,
+.product-btn-primary {
+	background: #d11433;
+	color: #fff;
+}
+
+.product-btn-back {
+	border: 1px solid #93c5fd;
+	color: #2563eb;
+	background: #fff;
+}
+
+.product-empty {
+	padding: 1rem;
+	text-align: center;
+	color: #6b7280;
+}
+
+.product-actions-right {
+	margin-top: 0.75rem;
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+.product-detail-table {
+	width: 100%;
+	font-size: 15px;
+	color: #374151;
+}
+
+.product-detail-table th,
+.product-detail-table td {
+	padding: 0.35rem 0.5rem;
+	border-bottom: 1px solid #d1d5db;
+	text-align: left;
+	vertical-align: top;
+}
+
+.product-detail-table th {
+	width: 34%;
+	font-weight: 700;
+	color: #111827;
+}
+
+.product-detail-table tr:last-child th,
+.product-detail-table tr:last-child td {
+	border-bottom: none;
+}
+
+.product-edit-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.product-edit-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.75rem;
+}
+
+.product-edit-grid-bottom {
+	margin-top: -0.25rem;
+}
+
+.product-edit-label {
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #374151;
+	margin-bottom: 0.2rem;
+}
+
+.product-edit-input {
+	display: block;
+	width: 100%;
+	border-radius: 0.4rem;
+	border: 1px solid #cbd5e1;
+	background: #f8fafc;
+	padding: 0.45rem 0.6rem;
+	font-size: 0.95rem;
+	color: #334155;
+}
+
+.product-edit-input.is-invalid {
+	border-color: #f87171;
+}
+
+.product-field-error {
+	margin-top: 0.25rem;
+	font-size: 0.9rem;
+	color: #dc2626;
+}
+
+.product-field-help {
+	margin-top: 0.25rem;
+	font-size: 0.9rem;
+	color: #6b7280;
+}
+
+.product-note {
+	font-size: 0.9rem;
+	color: #6b7280;
+}
+
+.product-alert-success,
+.product-alert-error {
+	margin-bottom: 0.75rem;
+	border-radius: 0.35rem;
+	padding: 0.75rem 0.9rem;
+	font-size: 1rem;
+}
+
+.product-alert-success {
+	border: 1px solid #86efac;
+	background: #dcfce7;
+	color: #166534;
+}
+
+.product-alert-error {
+	border: 1px solid #fca5a5;
+	background: #fee2e2;
+	color: #991b1b;
+}
+
+.product-footer {
+	margin-top: 1.25rem;
+	padding-bottom: 0.8rem;
+	text-align: center;
+	font-size: 0.875rem;
+	color: #6b7280;
+}
+
+@media (min-width: 640px) {
+	.behandeling-container {
+		padding: 0 1.5rem;
+	}
+
+	.kt-nav-container {
+		padding: 0 0.75rem;
+	}
+
+	.kt-nav-logo {
+		margin-left: -2.25rem;
+	}
+
+	.dashboard-container {
+		padding: 0 1.5rem;
+	}
+
+	.behandeling-edit-container {
+		padding: 0 1.5rem;
+	}
+
+	.product-container {
+		padding: 0 1.5rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.behandeling-container {
+		padding: 0 2rem;
+	}
+
+	.behandeling-filter-form {
+		flex-direction: row;
+		align-items: flex-end;
+	}
+
+	.behandeling-filter-field {
+		width: 290px;
+	}
+
+	.kt-nav-container {
+		padding: 0 1rem;
+	}
+
+	.kt-nav-logo {
+		margin-left: -52px;
+	}
+
+	.kt-nav-links {
+		margin-left: 4rem;
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+	}
+
+	.kt-nav-account {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.kt-nav-menu-btn {
+		display: none;
+	}
+
+	.kt-nav-mobile {
+		display: none;
+	}
+
+	.dashboard-container {
+		padding: 0 2rem;
+	}
+
+	.dashboard-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.behandeling-edit-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.product-edit-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+	.dashboard-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
