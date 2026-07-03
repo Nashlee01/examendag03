@@ -538,6 +538,29 @@ INSERT INTO LeverancierOrder (Id, Ordernummer, ProductId, LeverancierId, Aantal,
 -- =========================================================
 DELIMITER $$
 
+DROP PROCEDURE IF EXISTS sp_update_behandeling $$
+CREATE PROCEDURE sp_update_behandeling(
+    IN pBehandelingId BIGINT UNSIGNED,
+    IN pNaam VARCHAR(100),
+    IN pOmschrijving VARCHAR(255),
+    IN pDuurminuten INT,
+    IN pPrijs DECIMAL(8,2),
+    IN pIsActief TINYINT,
+    IN pOpmerking VARCHAR(255)
+)
+BEGIN
+    UPDATE Behandeling
+    SET
+        Naam = pNaam,
+        Omschrijving = pOmschrijving,
+        Duurminuten = pDuurminuten,
+        Prijs = pPrijs,
+        IsActief = IF(pIsActief = 1, b'1', b'0'),
+        Opmerking = pOpmerking,
+        DatumGewijzigd = CURRENT_TIMESTAMP(6)
+    WHERE Id = pBehandelingId;
+END $$
+
 DROP PROCEDURE IF EXISTS sp_get_bestellingen_overzicht $$
 CREATE PROCEDURE sp_get_bestellingen_overzicht()
 BEGIN

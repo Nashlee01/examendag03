@@ -29,69 +29,67 @@
                     @method('PUT')
 
                     <div>
-                        <label for="klant_naam" class="block text-sm font-medium text-gray-700">Klantnaam</label>
+                        <label for="naam" class="block text-sm font-medium text-gray-700">Naam behandeling</label>
                         <input
-                            id="klant_naam"
-                            name="klant_naam"
+                            id="naam"
+                            name="naam"
                             type="text"
                             required
-                            maxlength="120"
-                            value="{{ old('klant_naam', $behandeling->klant_naam) }}"
+                            maxlength="100"
+                            value="{{ old('naam', $behandeling->Naam) }}"
                             class="mt-1 block w-full rounded border-gray-300"
                         >
                     </div>
 
+                    <div>
+                        <label for="omschrijving" class="block text-sm font-medium text-gray-700">Omschrijving</label>
+                        <textarea
+                            id="omschrijving"
+                            name="omschrijving"
+                            required
+                            maxlength="255"
+                            rows="3"
+                            class="mt-1 block w-full rounded border-gray-300"
+                        >{{ old('omschrijving', $behandeling->Omschrijving) }}</textarea>
+                    </div>
+
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <label for="datum" class="block text-sm font-medium text-gray-700">Datum</label>
+                            <label for="duurminuten" class="block text-sm font-medium text-gray-700">Duur (minuten)</label>
                             <input
-                                id="datum"
-                                name="datum"
-                                type="date"
+                                id="duurminuten"
+                                name="duurminuten"
+                                type="number"
                                 required
-                                value="{{ old('datum', $behandeling->datum) }}"
+                                min="10"
+                                max="480"
+                                value="{{ old('duurminuten', $behandeling->Duurminuten) }}"
                                 class="mt-1 block w-full rounded border-gray-300"
                             >
                         </div>
 
                         <div>
-                            <label for="start_tijd" class="block text-sm font-medium text-gray-700">Starttijd</label>
+                            <label for="prijs" class="block text-sm font-medium text-gray-700">Prijs</label>
                             <input
-                                id="start_tijd"
-                                name="start_tijd"
-                                type="time"
+                                id="prijs"
+                                name="prijs"
+                                type="number"
                                 required
-                                value="{{ old('start_tijd', substr($behandeling->start_tijd, 0, 5)) }}"
+                                min="0"
+                                max="999999.99"
+                                step="0.01"
+                                value="{{ old('prijs', $behandeling->Prijs) }}"
                                 class="mt-1 block w-full rounded border-gray-300"
                             >
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <div>
-                            <label for="duur_minuten" class="block text-sm font-medium text-gray-700">Duur (minuten)</label>
-                            <input
-                                id="duur_minuten"
-                                name="duur_minuten"
-                                type="number"
-                                required
-                                min="10"
-                                max="180"
-                                value="{{ old('duur_minuten', $behandeling->duur_minuten) }}"
-                                class="mt-1 block w-full rounded border-gray-300"
-                            >
-                        </div>
-
-                        <div>
-                            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                            <select id="status" name="status" required class="mt-1 block w-full rounded border-gray-300">
-                                @foreach (['gepland', 'bezig', 'afgerond', 'geannuleerd'] as $status)
-                                    <option value="{{ $status }}" @selected(old('status', $behandeling->status) === $status)>
-                                        {{ ucfirst($status) }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div>
+                        <label for="is_actief" class="block text-sm font-medium text-gray-700">Status</label>
+                        <select id="is_actief" name="is_actief" required class="mt-1 block w-full rounded border-gray-300">
+                            <option value="1" @selected((string) old('is_actief', (int) $behandeling->IsActief) === '1')>Actief</option>
+                            <option value="0" @selected((string) old('is_actief', (int) $behandeling->IsActief) === '0')>Inactief</option>
+                        </select>
                     </div>
 
                     <div>
@@ -99,10 +97,10 @@
                         <textarea
                             id="opmerking"
                             name="opmerking"
-                            maxlength="2000"
-                            rows="4"
+                            maxlength="255"
+                            rows="3"
                             class="mt-1 block w-full rounded border-gray-300"
-                        >{{ old('opmerking', $behandeling->opmerking) }}</textarea>
+                        >{{ old('opmerking', $behandeling->Opmerking) }}</textarea>
                     </div>
 
                     <div class="flex justify-end gap-2">

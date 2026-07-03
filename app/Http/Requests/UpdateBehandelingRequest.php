@@ -8,25 +8,24 @@ class UpdateBehandelingRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        $behandeling = $this->route('behandeling');
         $user = $this->user();
 
-        if (! $behandeling || ! $user) {
+        if (! $user) {
             return false;
         }
 
-        return $behandeling->user_id === $user->id || $user->role === 'admin';
+        return $user->role === 'eigenaar';
     }
 
     public function rules(): array
     {
         return [
-            'klant_naam' => ['required', 'string', 'max:120'],
-            'datum' => ['required', 'date'],
-            'start_tijd' => ['required', 'date_format:H:i'],
-            'duur_minuten' => ['required', 'integer', 'min:10', 'max:180'],
-            'status' => ['required', 'in:gepland,bezig,afgerond,geannuleerd'],
-            'opmerking' => ['nullable', 'string', 'max:2000'],
+            'naam' => ['required', 'string', 'max:100'],
+            'omschrijving' => ['required', 'string', 'max:255'],
+            'duurminuten' => ['required', 'integer', 'min:10', 'max:480'],
+            'prijs' => ['required', 'numeric', 'min:0', 'max:999999.99'],
+            'is_actief' => ['required', 'boolean'],
+            'opmerking' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
