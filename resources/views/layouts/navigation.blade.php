@@ -11,16 +11,24 @@
                 <a href="#" title="Open Beschikbaarheid" class="kt-nav-link">Beschikbaarheid</a>
                 <a href="#" title="Open Klanten" class="kt-nav-link">Klanten</a>
                 <a href="#" title="Open Afspraken" class="kt-nav-link">Afspraken</a>
+
                 <a
                     href="{{ route('behandelingen.index') }}"
                     title="Open Behandelingen"
-                    {{-- Als huidige route begint met behandelingen.*, krijgt menu-item de actieve kleur (wireframe-eis). --}}
                     class="kt-nav-link {{ request()->routeIs('behandelingen.*') ? 'is-active' : '' }}"
                 >
                     Behandelingen
                 </a>
+
                 <a href="#" title="Open Producten" class="kt-nav-link">Producten</a>
-                <a href="#" title="Open Bestellingen" class="kt-nav-link">Bestellingen</a>
+
+                <a
+                    href="{{ route('bestellingen.index') }}"
+                    title="Open Bestellingen"
+                    class="kt-nav-link {{ request()->routeIs('bestellingen.*') ? 'is-active' : '' }}"
+                >
+                    Bestellingen
+                </a>
             </div>
 
             <div class="kt-nav-account">
@@ -46,16 +54,24 @@
             <a href="#" title="Open Beschikbaarheid" class="kt-nav-mobile-link">Beschikbaarheid</a>
             <a href="#" title="Open Klanten" class="kt-nav-mobile-link">Klanten</a>
             <a href="#" title="Open Afspraken" class="kt-nav-mobile-link">Afspraken</a>
+
             <a
                 href="{{ route('behandelingen.index') }}"
                 title="Open Behandelingen"
-                {{-- Zelfde actieve route-highlight, maar dan voor het mobiele menu. --}}
                 class="kt-nav-mobile-link {{ request()->routeIs('behandelingen.*') ? 'is-active' : '' }}"
             >
                 Behandelingen
             </a>
+
             <a href="#" title="Open Producten" class="kt-nav-mobile-link">Producten</a>
-            <a href="#" title="Open Bestellingen" class="kt-nav-mobile-link">Bestellingen</a>
+
+            <a
+                href="{{ route('bestellingen.index') }}"
+                title="Open Bestellingen"
+                class="kt-nav-mobile-link {{ request()->routeIs('bestellingen.*') ? 'is-active' : '' }}"
+            >
+                Bestellingen
+            </a>
 
             <div class="kt-nav-mobile-role">Salon Eigenaar (eigenaar)</div>
             <form method="POST" action="{{ route('logout') }}">
