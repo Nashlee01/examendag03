@@ -50,8 +50,13 @@
                     </table>
                 </div>
 
+               {{-- Terugknop onder de kolom Actie, zodat hij onder de Details-knoppen staat --}}
                 <div class="product-actions-right">
-                    <a href="{{ route('behandelingen.index') }}" class="product-btn-back">Terug</a>
+                    <div class="product-back-column">
+                        <a href="{{ route('behandelingen.index') }}" class="product-btn-back">
+                            Terug
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

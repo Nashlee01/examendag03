@@ -832,3 +832,34 @@
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
+
+
+
+/* Terugknop onder de actie-kolom van Producten per bestelling */
+.product-back-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
+    padding-right: 1.9rem;
+}
+
+/* Breedte gelijk aan de actie-kolom, zodat Terug onder Wijzigen staat */
+.product-back-column {
+    width: 92px;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.product-actions-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+.product-back-column {
+    width: 88px;
+    display: flex;
+    justify-content: center;
+}

@@ -14,12 +14,14 @@
                 <span class="product-title-secondary">{{ $bestelling->BestelNummer }}</span>
             </h1>
 
+            {{-- Terugkoppeling aan eindgebruiker na succesvol wijzigen --}}
             @if (session('success'))
                 <div class="product-alert-success">
                     {{ session('success') }}
                 </div>
             @endif
 
+            {{-- Terugkoppeling aan eindgebruiker bij fout --}}
             @if (session('error'))
                 <div class="product-alert-error">
                     {{ session('error') }}
@@ -73,10 +75,13 @@
                         </table>
                     </div>
 
-                    <div class="product-actions-right">
-                        <a href="{{ route('bestellingen.index') }}" class="product-btn-back">
-                            Terug
-                        </a>
+                    {{-- Terugknop wordt onder de actie-kolom geplaatst zoals in het wireframe --}}
+                    <div class="product-back-row">
+                        <div class="product-back-column">
+                            <a href="{{ route('bestellingen.index') }}" class="product-btn-back">
+                                Terug
+                            </a>
+                        </div>
                     </div>
                 @endif
             </section>
